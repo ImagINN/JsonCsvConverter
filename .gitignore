@@ -1,0 +1,97 @@
+# Blazor output directories
+bin/
+obj/
+
+# Visual Studio Code (VSCode)
+.vscode/
+
+# Visual Studio IDE
+*.suo
+*.user
+*.sln.docstates
+
+# JetBrains Rider
+.idea/
+
+# NuGet Packages
+*.nupkg
+*.paket/paket.exe
+paket-files/
+
+# User-specific files
+*.DS_Store
+Thumbs.db
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio profiler
+*.psess
+*.vsp
+*.vspx
+*.sap
+
+# Resharper
+_ReSharper*/
+
+# NCrunch
+_NCrunch_*
+
+# DotCover
+*.dotCover
+
+# AxoCover
+.axoCover/*
+!.axoCover/settings.json
+
+# Coverlet
+coverage*/
+*.coverage
+*.opencover.*
+*.runsettings
+
+# Reports
+*.scoverage
+*.sonarlint
+*.html
+
+# Visual Studio Code files
+.vscode/
+.history/
+**/.classpath
+**/.project
+**/.settings
+**/.factorypath
+**/.externalToolBuilders
+
+# Rider files
+.idea/
+*.sln.iml
+
+# Roslyn cache directories
+*.ide/
+*.ide.meta/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Rider
+.idea/
+
+# Add OS-specific files and folders
+[Tt]humbs.db
+.DS_Store
