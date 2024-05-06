@@ -1,0 +1,128 @@
+@page "/csv2json"
+@using System.Text.Json
+
+<PageTitle>Csv2Json</PageTitle>
+
+<div class="container">
+    <div class="head">
+        <h1>Csv2Json</h1>
+        <h3>This component demonstrates converting CSV to JSON.</h3>
+    </div>
+    <div class="body">
+        <div class="input-container">
+            <textarea rows="0" name="csvtext" id="csv" placeholder="Enter CSV text here" @bind="@csvText"></textarea>
+        </div>
+        <div class="button-container">
+            <button type="button" class="btn btn-primary" @onclick="Convert">Convert to JSON</button>
+        </div>
+    </div>
+    <div class="foot">
+        <pre>@jsonText</pre>
+    </div>
+</div>
+
+@code {
+    private string jsonText = "JSON will be here";
+
+    private string csvText = string.Empty;
+
+/*
+Name, Age, City
+John, 25, New York
+Jane, 30, Los Angeles
+*/
+    private async Task Convert()
+    {
+        await Task.Run(() =>
+        {
+            var csv = csvText;
+
+            if (string.IsNullOrWhiteSpace(csv))
+            {
+                jsonText = "CSV text is empty!";
+                return;
+            }
+
+            if (!csv.Contains(","))
+            {
+                jsonText = "CSV text is not valid!";
+                return;
+            }
+
+            var lines = csv.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var headers = lines.First().Split(',').Select(h => h.Trim()).ToArray();
+            var jsonList = new List<Dictionary<string, string>>();
+            foreach (var line in lines.Skip(1))
+            {
+                var values = line.Split(',').Select(v => v.Trim()).ToArray();
+                var json = new Dictionary<string, string>();
+                for (var i = 0; i < headers.Length; i++)
+                {
+                    json.Add(headers[i], values[i]);
+                }
+                jsonList.Add(json);
+            }
+            jsonText = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions { WriteIndented = true });
+        });
+    }
+
+}
+
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .head {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-container,
+    .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+
+    .foot {
+        width: 100%;
+        display: flex;
+        margin-top: 2rem;
+    }
+
+    textarea {
+        width: 100%;
+        height: 200px;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        resize: none;
+    }
+
+    pre {
+        white-space: pre-wrap;
+        text-align: left;
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+    }
+</style>
+

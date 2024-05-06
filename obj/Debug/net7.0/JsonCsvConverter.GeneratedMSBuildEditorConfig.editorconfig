@@ -24,12 +24,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/Pages/Csv2Json.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ3N2Mkpzb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/Pages/FetchData.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRmV0Y2hEYXRhLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/Pages/Index.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/Pages/Json2Csv.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSnNvbjJDc3YucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/Shared/SurveyPrompt.razor]

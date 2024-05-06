@@ -1,0 +1,44 @@
+@page "/json2csv"
+
+@using System.Text.Json
+
+<PageTitle>Json2Csv</PageTitle>
+
+<div class="container">
+    <h1>Json2Csv</h1>
+    <p>This component demonstrates converting JSON to CSV.</p>
+    <input type="file" />
+    <div>
+        <pre>@csv</pre>
+    </div>
+</div>
+
+@code {
+    private string csv = string.Empty;
+
+    @* private async Task HandleFileUpload(InputChangeEventArgs e)
+    {
+        var file = e.GetMultipleFiles().FirstOrDefault();
+        if (file != null)
+        {
+            using var reader = new StreamReader(file.OpenReadStream());
+            var csv = await reader.ReadToEndAsync();
+            var lines = csv.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
+            var headers = lines.First().Split(',');
+            var jsonList = new List<Dictionary<string, string>>();
+            foreach (var line in lines.Skip(1))
+            {
+                var values = line.Split(',');
+                var json = new Dictionary<string, string>();
+                for (var i = 0; i < headers.Length; i++)
+                {
+                    json.Add(headers[i], values[i]);
+                }
+                jsonList.Add(json);
+            }
+            json = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions { WriteIndented = true });
+        }
+    } *@
+
+    
+}
