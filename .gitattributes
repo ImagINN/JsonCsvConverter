@@ -1,4 +1,4 @@
-*.dart linguist-vendored=false
-*.cs linguist-vendored
-*.html linguist-vendored
-*.css linguist-vendored
+* linguist-vendored
+*.cs linguist-vendored=false
+*.html linguist-vendored=false
+*.css linguist-vendored=false
