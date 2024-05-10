@@ -2,43 +2,213 @@
 
 @using System.Text.Json
 
+@inject IJSRuntime JSRuntime
+
 <PageTitle>Json2Csv</PageTitle>
 
 <div class="container">
-    <h1>Json2Csv</h1>
-    <p>This component demonstrates converting JSON to CSV.</p>
-    <input type="file" />
-    <div>
-        <pre>@csv</pre>
+    <div class="head">
+        <h1>Json2Csv</h1>
+        <h3>This component demonstrates converting JSON to CSV.</h3>
+    </div>
+    <div class="body">
+        <div class="input-container">
+            <div class="d-flex align-items-center highlight-toolbar ms-auto ps-3 pe-2 py-1">
+                <button type="button" class="btn @(isJsonCopied ? "btn-secondary" : "btn-outline-secondary")"
+                    @onclick="() => CopyText(jsonText, 0)"><svg xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" viewBox="0 0 28 28">
+                        <path fill="#cccccc"
+                            d="M9.708 5.5H7.75c-.69 0-1.25.56-1.25 1.25v16.5c0 .69.56 1.25 1.25 1.25h12.5c.69 0 1.25-.56 1.25-1.25V6.75c0-.69-.56-1.25-1.25-1.25h-1.958A2.5 2.5 0 0 1 16 7h-4a2.5 2.5 0 0 1-2.292-1.5M18.45 4h1.8A2.75 2.75 0 0 1 23 6.75v16.5A2.75 2.75 0 0 1 20.25 26H7.75A2.75 2.75 0 0 1 5 23.25V6.75A2.75 2.75 0 0 1 7.75 4h1.8A2.5 2.5 0 0 1 12 2h4a2.5 2.5 0 0 1 2.45 2M11 4.5a1 1 0 0 0 1 1h4a1 1 0 1 0 0-2h-4a1 1 0 0 0-1 1" />
+                    </svg></button>
+                <button type="button" class="btn btn-outline-danger" id="clear-csv-btn" @onclick="ClearJson">X</button>
+            </div>
+            <textarea rows="0" name="csvtext" id="json" @oninput="HandleJsonInputChange"
+                placeholder="Enter JSON text here" @bind="@jsonText"></textarea>
+        </div>
+        <div class="button-container">
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <button type="button" class="btn btn-outline-primary" id="convert-btn" @onclick="Convert">Convert to
+                    JSON</button>
+                <button type="button" class="btn btn-outline-primary" id="clear-btn" @onclick="ClearAll">Clear
+                    All</button>
+            </div>
+        </div>
+        <div class="output-container">
+            <div class="d-flex align-items-center highlight-toolbar ms-auto ps-3 pe-2 py-1">
+                <button type="button" class="btn @(isCsvCopied ? "btn-secondary" : "btn-outline-secondary")"
+                    @onclick="() => CopyText(csvText, 1)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 28 28">
+                        <path fill="#cccccc"
+                            d="M9.708 5.5H7.75c-.69 0-1.25.56-1.25 1.25v16.5c0 .69.56 1.25 1.25 1.25h12.5c.69 0 1.25-.56 1.25-1.25V6.75c0-.69-.56-1.25-1.25-1.25h-1.958A2.5 2.5 0 0 1 16 7h-4a2.5 2.5 0 0 1-2.292-1.5M18.45 4h1.8A2.75 2.75 0 0 1 23 6.75v16.5A2.75 2.75 0 0 1 20.25 26H7.75A2.75 2.75 0 0 1 5 23.25V6.75A2.75 2.75 0 0 1 7.75 4h1.8A2.5 2.5 0 0 1 12 2h4a2.5 2.5 0 0 1 2.45 2M11 4.5a1 1 0 0 0 1 1h4a1 1 0 1 0 0-2h-4a1 1 0 0 0-1 1" />
+                    </svg></button>
+                <button type="button" class="btn btn-outline-danger" id="clear-json-btn" @onclick="ClearCsv">X</button>
+            </div>
+            <pre>@csvText</pre>
+        </div>
+    </div>
+    <div class="foot">
     </div>
 </div>
 
 @code {
-    private string csv = string.Empty;
+    private string jsonText = string.Empty;
+    private string csvText = "CSV will be here";
+    private bool isCsvCopied = false;
+    private bool isJsonCopied = false;
 
-    @* private async Task HandleFileUpload(InputChangeEventArgs e)
+    private async Task Convert()
     {
-        var file = e.GetMultipleFiles().FirstOrDefault();
-        if (file != null)
+        await Task.Run(() =>
         {
-            using var reader = new StreamReader(file.OpenReadStream());
-            var csv = await reader.ReadToEndAsync();
-            var lines = csv.Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
-            var headers = lines.First().Split(',');
-            var jsonList = new List<Dictionary<string, string>>();
-            foreach (var line in lines.Skip(1))
-            {
-                var values = line.Split(',');
-                var json = new Dictionary<string, string>();
-                for (var i = 0; i < headers.Length; i++)
-                {
-                    json.Add(headers[i], values[i]);
-                }
-                jsonList.Add(json);
-            }
-            json = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions { WriteIndented = true });
-        }
-    } *@
+            var json = jsonText;
 
-    
+            if (string.IsNullOrWhiteSpace(json))
+            {
+                csvText = "JSON text is empty!";
+                return;
+            }
+
+            var jsonList = JsonSerializer.Deserialize<List<Dictionary<string, string>>>(json);
+            if (jsonList == null)
+            {
+                csvText = "JSON text is not valid!";
+                return;
+            }
+
+            var headers = jsonList.First().Keys.ToArray();
+            var csv = string.Join(",", headers) + Environment.NewLine;
+            foreach (var jsonItem in jsonList)
+            {
+                csv += string.Join(",", jsonItem.Values) + Environment.NewLine;
+            }
+
+            csvText = csv;
+        });
+    }
+
+    private void ClearAll()
+    {
+        jsonText = string.Empty;
+        csvText = "CSV will be here";
+        isCsvCopied = false;
+        isJsonCopied = false;
+    }
+
+    private void ClearCsv()
+    {
+        csvText = "CSV will be here";
+        isCsvCopied = false;
+    }
+
+    private void ClearJson()
+    {
+        jsonText = string.Empty;
+        isJsonCopied = false;
+    }
+
+    private async Task CopyText(string text, int elementId)
+    {
+        try
+        {
+            if (!string.IsNullOrWhiteSpace(text))
+            {
+                await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", text);
+
+                if (elementId == 0) {isJsonCopied = true;}
+                else {isCsvCopied = true;}
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Hata: {ex.Message}");
+        }
+    }
+
+    private void HandleJsonInputChange(ChangeEventArgs e)
+    {
+        isJsonCopied = false;
+    }
 }
+
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .head {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .body {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .input-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 8px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+    }
+
+    .output-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-top: 8px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+    }
+
+    .button-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        #clear-btn {
+            margin-left: 4px;
+        }
+    }
+
+    .foot {
+        width: 100%;
+        display: flex;
+        margin-top: 2rem;
+    }
+
+    textarea {
+        width: 100%;
+        height: 225px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        background-color: #f8f8f8;
+        resize: none;
+    }
+
+    pre {
+        white-space: pre-wrap;
+        text-align: left;
+        width: 100%;
+        height: 225px;
+        padding: 12px 20px;
+        margin-bottom: 0;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        background-color: #f8f8f8;
+        resize: none;
+    }
+</style>
