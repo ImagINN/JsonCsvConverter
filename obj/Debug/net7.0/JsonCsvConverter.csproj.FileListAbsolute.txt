@@ -826,3 +826,11 @@
 /Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/obj/Debug/net7.0/refint/JsonCsvConverter.dll
 /Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/obj/Debug/net7.0/JsonCsvConverter.pdb
 /Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/obj/Debug/net7.0/ref/JsonCsvConverter.dll
+/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/CsvHelper.dll
+/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/Newtonsoft.Json.dll
+/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/Newtonsoft.Json.dll.gz
+/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/CsvHelper.dll.gz
+/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/CsvHelper.dll
+/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/Newtonsoft.Json.dll
+/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/obj/Debug/net7.0/build-gz/HQzOU5k+.gz
+/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/obj/Debug/net7.0/build-gz/hLDsJBAu.gz

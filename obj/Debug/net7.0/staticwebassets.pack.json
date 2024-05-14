@@ -73,6 +73,10 @@
       "PackagePath": "staticwebassets/index.html"
     },
     {
+      "Id": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/wwwroot/js/dosyaIslemleri.js",
+      "PackagePath": "staticwebassets/js/dosyaIslemleri.js"
+    },
+    {
       "Id": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/wwwroot/sample-data/weather.json",
       "PackagePath": "staticwebassets/sample-data/weather.json"
     },

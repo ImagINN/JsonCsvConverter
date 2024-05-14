@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "j64Mbw3RyFDb332bj/mxEIEbzFdYMUDnXoXrVJtfLGo=",
+  "Hash": "uHWjPcCYFXjmh91X5f3LQoRct2OW//oshEVS3icV0JE=",
   "Source": "JsonCsvConverter",
   "BasePath": "/",
   "Mode": "Root",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "/Users/gokhan/.nuget/packages/microsoft.aspnetcore.components.webassembly/7.0.14/build/net7.0/blazor.webassembly.js"
+    },
+    {
+      "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/CsvHelper.dll",
+      "SourceId": "JsonCsvConverter",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/CsvHelper.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/gokhan/.nuget/packages/csvhelper/32.0.3/lib/net7.0/CsvHelper.dll"
     },
     {
       "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/dotnet.7.0.14.8h6h7jzlzh.js",
@@ -695,6 +712,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/gokhan/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/7.0.14/runtimes/browser-wasm/lib/net7.0/netstandard.dll"
+    },
+    {
+      "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/Newtonsoft.Json.dll",
+      "SourceId": "JsonCsvConverter",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/gokhan/.nuget/packages/newtonsoft.json/13.0.3/lib/net6.0/Newtonsoft.Json.dll"
     },
     {
       "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/System.AppContext.dll",
@@ -4845,6 +4879,23 @@
       "OriginalItemSpec": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/System.Diagnostics.Tracing.dll"
     },
     {
+      "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/obj/Debug/net7.0/build-gz/hLDsJBAu.gz",
+      "SourceId": "JsonCsvConverter",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/Newtonsoft.Json.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/Newtonsoft.Json.dll"
+    },
+    {
       "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/obj/Debug/net7.0/build-gz/HlU0nSew.gz",
       "SourceId": "JsonCsvConverter",
       "SourceType": "Computed",
@@ -4860,6 +4911,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/System.Data.dll"
+    },
+    {
+      "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/obj/Debug/net7.0/build-gz/HQzOU5k+.gz",
+      "SourceId": "JsonCsvConverter",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "_framework/CsvHelper.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/CsvHelper.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/bin/Debug/net7.0/wwwroot/_framework/CsvHelper.dll"
     },
     {
       "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/obj/Debug/net7.0/build-gz/hTWVBGHk.gz",
@@ -7155,6 +7223,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/index.html"
+    },
+    {
+      "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/wwwroot/js/dosyaIslemleri.js",
+      "SourceId": "JsonCsvConverter",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "js/dosyaIslemleri.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/dosyaIslemleri.js"
     },
     {
       "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/wwwroot/sample-data/weather.json",

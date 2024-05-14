@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.002.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonCsvConverter", "JsonCsvConverter.csproj", "{F50E2B39-B089-45BB-9F11-A5AAD2B86CEE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvFileReader", "..\..\CsvFileReader\CsvFileReader.csproj", "{4A36B398-256C-4B5C-B4FC-15F6C460128A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{F50E2B39-B089-45BB-9F11-A5AAD2B86CEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F50E2B39-B089-45BB-9F11-A5AAD2B86CEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F50E2B39-B089-45BB-9F11-A5AAD2B86CEE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A36B398-256C-4B5C-B4FC-15F6C460128A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A36B398-256C-4B5C-B4FC-15F6C460128A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A36B398-256C-4B5C-B4FC-15F6C460128A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A36B398-256C-4B5C-B4FC-15F6C460128A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,7 +1,5 @@
 @page "/csv2json"
 
-@using System.Text.Json
-
 @inject IJSRuntime JSRuntime
 
 <PageTitle>Csv2Json</PageTitle>
@@ -14,13 +12,18 @@
     <div class="body">
         <div class="input-container">
             <div class="d-flex align-items-center highlight-toolbar ms-auto ps-3 pe-2 py-1">
-                <button type="button" class="btn @(isCsvCopied ? "btn-secondary" : "btn-outline-secondary")"
-                    @onclick="() => CopyText(csvText, 0)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                <InputFile class="form-control btn btn-dark me-2" OnChange="HandleFileUpload" />
+                <button type="button" class="btn @(isCsvCopied ? "btn-dark" : "btn-outline-dark") me-1"
+                    @onclick="() => CopyText(csvText, 0)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                         viewBox="0 0 28 28">
                         <path fill="#cccccc"
                             d="M9.708 5.5H7.75c-.69 0-1.25.56-1.25 1.25v16.5c0 .69.56 1.25 1.25 1.25h12.5c.69 0 1.25-.56 1.25-1.25V6.75c0-.69-.56-1.25-1.25-1.25h-1.958A2.5 2.5 0 0 1 16 7h-4a2.5 2.5 0 0 1-2.292-1.5M18.45 4h1.8A2.75 2.75 0 0 1 23 6.75v16.5A2.75 2.75 0 0 1 20.25 26H7.75A2.75 2.75 0 0 1 5 23.25V6.75A2.75 2.75 0 0 1 7.75 4h1.8A2.5 2.5 0 0 1 12 2h4a2.5 2.5 0 0 1 2.45 2M11 4.5a1 1 0 0 0 1 1h4a1 1 0 1 0 0-2h-4a1 1 0 0 0-1 1" />
                     </svg></button>
-                <button type="button" class="btn btn-outline-danger" id="clear-csv-btn" @onclick="ClearCsv">X</button>
+                <button type="button" class="btn btn-outline-danger" id="clear-csv-btn" @onclick="ClearCsv"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 15 15">
+                        <path fill="#ff0000"
+                            d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27" />
+                    </svg></button>
             </div>
             <textarea rows="0" name="csvtext" id="csv" @oninput="HandleCsvInputChange" placeholder="Enter CSV text here"
                 @bind="@csvText"></textarea>
@@ -35,13 +38,17 @@
         </div>
         <div class="output-container">
             <div class="d-flex align-items-center highlight-toolbar ms-auto ps-3 pe-2 py-1">
-                <button type="button" class="btn @(isJsonCopied ? "btn-secondary" : "btn-outline-secondary")"
+                <button type="button" class="btn @(isJsonCopied ? "btn-dark" : "btn-outline-dark") me-1"
                     @onclick="() => CopyText(jsonText, 1)"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" viewBox="0 0 28 28">
                         <path fill="#cccccc"
                             d="M9.708 5.5H7.75c-.69 0-1.25.56-1.25 1.25v16.5c0 .69.56 1.25 1.25 1.25h12.5c.69 0 1.25-.56 1.25-1.25V6.75c0-.69-.56-1.25-1.25-1.25h-1.958A2.5 2.5 0 0 1 16 7h-4a2.5 2.5 0 0 1-2.292-1.5M18.45 4h1.8A2.75 2.75 0 0 1 23 6.75v16.5A2.75 2.75 0 0 1 20.25 26H7.75A2.75 2.75 0 0 1 5 23.25V6.75A2.75 2.75 0 0 1 7.75 4h1.8A2.5 2.5 0 0 1 12 2h4a2.5 2.5 0 0 1 2.45 2M11 4.5a1 1 0 0 0 1 1h4a1 1 0 1 0 0-2h-4a1 1 0 0 0-1 1" />
                     </svg></button>
-                <button type="button" class="btn btn-outline-danger" id="clear-json-btn" @onclick="ClearJson">X</button>
+                <button type="button" class="btn btn-outline-danger" id="clear-json-btn" @onclick="ClearJson"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 15 15">
+                        <path fill="#ff0000"
+                            d="M3.64 2.27L7.5 6.13l3.84-3.84A.92.92 0 0 1 12 2a1 1 0 0 1 1 1a.9.9 0 0 1-.27.66L8.84 7.5l3.89 3.89A.9.9 0 0 1 13 12a1 1 0 0 1-1 1a.92.92 0 0 1-.69-.27L7.5 8.87l-3.85 3.85A.92.92 0 0 1 3 13a1 1 0 0 1-1-1a.9.9 0 0 1 .27-.66L6.16 7.5L2.27 3.61A.9.9 0 0 1 2 3a1 1 0 0 1 1-1c.24.003.47.1.64.27" />
+                    </svg></button>
             </div>
             <pre>@jsonText</pre>
         </div>
@@ -56,17 +63,29 @@
     private bool isCsvCopied = false;
     private bool isJsonCopied = false;
 
-    /*
-    Name, Age, City
-    John, 25, New York
-    Jane, 30, Los Angeles
-    Jane, 30, Los Angeles
-    Jane, 30, Los Angeles
-    Jane, 30, Los Angeles
-    Jane, 30, Los Angeles
-    Jane, 30, Los Angeles
-    Jane, 30, Los Angeles
-    */
+    private async Task HandleFileUpload(InputFileChangeEventArgs e)
+    {
+        var file = e.GetMultipleFiles().FirstOrDefault();
+
+        if (file != null)
+        {
+            using (var stream = file.OpenReadStream())
+            {
+                using (var reader = new StreamReader(stream))
+                {
+                    var csvData = await reader.ReadToEndAsync();
+                    using (var csvReader = new StringReader(csvData))
+                    using (var csv = new CsvReader(csvReader, CultureInfo.InvariantCulture))
+                    {
+                        var records = csv.GetRecords<dynamic>().ToList();
+
+                        var jsonData = JsonSerializer.Serialize(records, new JsonSerializerOptions { WriteIndented = true });
+                        jsonText = jsonData;
+                    }
+                }
+            }
+        }
+    }
     private async Task Convert()
     {
         await Task.Run(() =>
@@ -101,7 +120,6 @@
             jsonText = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions { WriteIndented = true });
         });
     }
-
     private void ClearAll()
     {
         csvText = string.Empty;
@@ -109,19 +127,16 @@
         isCsvCopied = false;
         isJsonCopied = false;
     }
-
     private void ClearCsv()
     {
         csvText = string.Empty;
         isCsvCopied = false;
     }
-
     private void ClearJson()
     {
         jsonText = "JSON will be here";
         isJsonCopied = false;
     }
-
     private async Task CopyText(string text, int elementId)
     {
         try
@@ -145,7 +160,6 @@
             Console.WriteLine($"Hata: {ex.Message}");
         }
     }
-
     private void HandleCsvInputChange(ChangeEventArgs e)
     {
         isCsvCopied = false;
