@@ -1,4 +1,5 @@
 @page "/csv2json"
+@using System.Text
 
 @inject IJSRuntime JSRuntime
 
@@ -12,7 +13,7 @@
     <div class="body">
         <div class="input-container">
             <div class="d-flex align-items-center highlight-toolbar ms-auto ps-3 pe-2 py-1">
-                <InputFile class="form-control btn btn-dark me-2" OnChange="HandleFileUpload" />
+                <InputFile class="form-control btn btn-dark me-2" OnChange="HandleFileUpload" accept=".csv" />
                 <button type="button" class="btn @(isCsvCopied ? "btn-dark" : "btn-outline-dark") me-1"
                     @onclick="() => CopyText(csvText, 0)"><svg xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                         viewBox="0 0 28 28">
@@ -38,6 +39,7 @@
         </div>
         <div class="output-container">
             <div class="d-flex align-items-center highlight-toolbar ms-auto ps-3 pe-2 py-1">
+                <button class="btn btn-primary" @onclick="DownloadJson">Download JSON</button>
                 <button type="button" class="btn @(isJsonCopied ? "btn-dark" : "btn-outline-dark") me-1"
                     @onclick="() => CopyText(jsonText, 1)"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" viewBox="0 0 28 28">
@@ -86,6 +88,20 @@
             }
         }
     }
+
+    private async Task DownloadJson()
+    {
+        if (!string.IsNullOrWhiteSpace(jsonText))
+        {
+            var data = Encoding.UTF8.GetBytes(jsonText);
+            await JSRuntime.InvokeVoidAsync("downloadJsonFile", "data.json", data);
+        }
+        else
+        {
+            Console.WriteLine("JSON verisi boş.");
+        }
+    }
+
     private async Task Convert()
     {
         await Task.Run(() =>
@@ -120,6 +136,7 @@
             jsonText = JsonSerializer.Serialize(jsonList, new JsonSerializerOptions { WriteIndented = true });
         });
     }
+
     private void ClearAll()
     {
         csvText = string.Empty;
@@ -127,16 +144,19 @@
         isCsvCopied = false;
         isJsonCopied = false;
     }
+
     private void ClearCsv()
     {
         csvText = string.Empty;
         isCsvCopied = false;
     }
+
     private void ClearJson()
     {
         jsonText = "JSON will be here";
         isJsonCopied = false;
     }
+
     private async Task CopyText(string text, int elementId)
     {
         try
@@ -160,6 +180,7 @@
             Console.WriteLine($"Hata: {ex.Message}");
         }
     }
+
     private void HandleCsvInputChange(ChangeEventArgs e)
     {
         isCsvCopied = false;

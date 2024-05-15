@@ -14,6 +14,7 @@
     <div class="body">
         <div class="input-container">
             <div class="d-flex align-items-center highlight-toolbar ms-auto ps-3 pe-2 py-1">
+                <InputFile class="form-control btn btn-dark me-2" OnChange="HandleJsonFileUpload" accept=".json" />
                 <button type="button" class="btn @(isJsonCopied ? "btn-secondary" : "btn-outline-secondary")"
                     @onclick="() => CopyText(jsonText, 0)"><svg xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" viewBox="0 0 28 28">
@@ -35,6 +36,7 @@
         </div>
         <div class="output-container">
             <div class="d-flex align-items-center highlight-toolbar ms-auto ps-3 pe-2 py-1">
+                <button class="btn btn-primary" @onclick="DownloadCsv">Download CSV</button>
                 <button type="button" class="btn @(isCsvCopied ? "btn-secondary" : "btn-outline-secondary")"
                     @onclick="() => CopyText(csvText, 1)"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                         viewBox="0 0 28 28">
@@ -55,6 +57,74 @@
     private string csvText = "CSV will be here";
     private bool isCsvCopied = false;
     private bool isJsonCopied = false;
+
+    private async Task HandleJsonFileUpload(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+
+        if (file != null && file.ContentType == "application/json" && file.Size < 1048576) // 1 MB limit
+        {
+            using (var stream = file.OpenReadStream())
+            using (var reader = new StreamReader(stream))
+            {
+                var jsonData = await reader.ReadToEndAsync();
+
+                try
+                {
+                    var records = JsonSerializer.Deserialize<List<Dictionary<string, object>>>(jsonData);
+
+                    if (records != null && records.Count > 0)
+                    {
+                        using (var csvWriter = new StringWriter())
+                        using (var csv = new CsvWriter(csvWriter, CultureInfo.InvariantCulture))
+                        {
+                            foreach (var key in records[0].Keys)
+                            {
+                                csv.WriteField(key);
+                            }
+                            csv.NextRecord();
+
+                            foreach (var record in records)
+                            {
+                                foreach (var value in record.Values)
+                                {
+                                    csv.WriteField(value);
+                                }
+                                csv.NextRecord();
+                            }
+
+                            csv.Flush();
+                            csvText = csvWriter.ToString();
+                        }
+                    }
+                    else
+                    {
+                        csvText = "JSON data is empty or invalid!";
+                    }
+                }
+                catch (JsonException ex)
+                {
+                    csvText = $"JSON deserialization error: {ex.Message}";
+                }
+            }
+        }
+        else
+        {
+            csvText = "Please upload a valid JSON file (max 1 MB).";
+        }
+    }
+
+    private async Task DownloadCsv()
+    {
+        if (!string.IsNullOrEmpty(csvText))
+        {
+            await JSRuntime.InvokeVoidAsync("downloadFile", "data.csv", csvText);
+        }
+        else
+        {
+            Console.WriteLine("CSV verisi boş.");
+        }
+    }
 
     private async Task Convert()
     {
@@ -114,8 +184,8 @@
             {
                 await JSRuntime.InvokeVoidAsync("navigator.clipboard.writeText", text);
 
-                if (elementId == 0) {isJsonCopied = true;}
-                else {isCsvCopied = true;}
+                if (elementId == 0) { isJsonCopied = true; }
+                else { isCsvCopied = true; }
             }
         }
         catch (Exception ex)

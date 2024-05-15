@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uHWjPcCYFXjmh91X5f3LQoRct2OW//oshEVS3icV0JE=",
+  "Hash": "ZQWaJamYZk4DgkANb8uvgGieNdSejBCrAaTftFEsw1Y=",
   "Source": "JsonCsvConverter",
   "BasePath": "/",
   "Mode": "Root",
@@ -7225,12 +7225,12 @@
       "OriginalItemSpec": "wwwroot/index.html"
     },
     {
-      "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/wwwroot/js/dosyaIslemleri.js",
+      "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/wwwroot/js/downloadFile.js",
       "SourceId": "JsonCsvConverter",
       "SourceType": "Discovered",
       "ContentRoot": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/wwwroot/",
       "BasePath": "/",
-      "RelativePath": "js/dosyaIslemleri.js",
+      "RelativePath": "js/downloadFile.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -7239,7 +7239,24 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot/js/dosyaIslemleri.js"
+      "OriginalItemSpec": "wwwroot/js/downloadFile.js"
+    },
+    {
+      "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/wwwroot/js/downloadJsonFile.js",
+      "SourceId": "JsonCsvConverter",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/wwwroot/",
+      "BasePath": "/",
+      "RelativePath": "js/downloadJsonFile.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/downloadJsonFile.js"
     },
     {
       "Identity": "/Users/gokhan/Desktop/Projects/Csv-JsonConverter/JsonCsvConverter/wwwroot/sample-data/weather.json",
